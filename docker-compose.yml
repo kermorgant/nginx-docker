@@ -1,0 +1,27 @@
+version: '2'
+
+volumes:
+  xibodata:
+    external: true
+
+networks:
+  front:
+    external: true
+  back:
+    external: true
+
+services:
+  nginx:
+    container_name: nginx
+    build: nginx
+    restart: unless-stopped
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /etc/ssl:/etc/ssl:ro
+      - ./nginx/local:/var/www
+      - xibodata:/var/www/xibo:ro
+    ports:
+      - "80:80"
+    networks:
+      - front
+      - back
