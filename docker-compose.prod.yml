@@ -5,3 +5,8 @@ services:
       - "443:443"
     volumes:
       - ./nginx/conf-prod.d/:/etc/nginx/conf.d
+
+
+  nginx-gen:
+    volumes:
+      - ./nginx/conf-prod.d/nginx.tmpl:/etc/docker-gen/nginx.tmpl

@@ -1,12 +1,6 @@
 version: '2'
 
 services:
-  mariadb:
-          #    ports:
-          #- "3306:3306"
-    env_file:
-      - ./mariadb/mariadb.env
-
   nginx:
     volumes:
       - ./nginx/conf-dev.d/:/etc/nginx/conf.d
