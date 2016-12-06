@@ -68,7 +68,8 @@ server {
     {{ end }}
 
     {{ if eq $host "pma.kgtech.fi" }}
-        ssl_client_certificate "Env.SSL_CA_PATH;
+        {{ $container := index $containers 0 }}
+        ssl_client_certificate {{ $container.Env.SSL_CA_PATH }};
         ssl_verify_client on;
     {{ end }}
 
