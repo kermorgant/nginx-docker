@@ -67,6 +67,11 @@ server {
     }
     {{ end }}
 
+    {{ if eq $host "pma.kgtech.fi" }}
+        ssl_client_certificate "Env.SSL_CA_PATH;
+        ssl_verify_client on;
+    {{ end }}
+
     {{ if eq $host "ds.kgtech.fi" }}
     client_max_body_size 100m;
 
@@ -88,7 +93,7 @@ server {
         fastcgi_param SCRIPT_FILENAME $request_filename;
     }
 
-    {{ else }}
+    {{ else  }}
     location / {
         proxy_pass http://{{ trim $host }};
         proxy_set_header Host $http_host;
